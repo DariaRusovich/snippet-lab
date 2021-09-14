@@ -9,9 +9,9 @@ export function useSnipets() {
     return useContext(SnippetsContext)
 }
 
-export function DataProvider({children}) {
+export function SnippetsProvider({children}) {
     const [state, dispatch] = useReducer(reducer, initialState)
-    return <DataContext.Provider value={[state, dispatch]}>{children}</DataContext.Provider>
+    return <SnippetsContext.Provider value={[state, dispatch]}>{children}</SnippetsContext.Provider>
 }
 
 function reducer(state, action) {
