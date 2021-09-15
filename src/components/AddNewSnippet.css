@@ -1,0 +1,23 @@
+.add-form{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+.add-form>h2{
+    font-size: 22px;
+    font-weight: 700;
+}
+.add-form>h3{
+    font-size: 18px;
+}
+.form-title, .form-folder, .form-lang, .form-code, .form-notes{
+    padding: 10px;
+    border: var(--border);
+}
+.form-btn-group{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
