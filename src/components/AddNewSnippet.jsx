@@ -21,8 +21,8 @@ export default function AddNewSnippet(params) {
         <h3>Notes</h3>
         <textarea className="form-notes" name="notes" id="" cols="30" rows="10"></textarea>
         <div className="form-btn-group">
-            <button className="btn btn-add">Create</button>
-            <button className="btn btn-add btn-cancel">Cancel</button>
+            <button className="btn btn-style">Create</button>
+            <button className="btn btn-style">Cancel</button>
         </div>
         </form>
         

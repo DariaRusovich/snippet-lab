@@ -200,32 +200,7 @@ button {
 
 /*===========COMMON STYLES END============*/
 
-/*===========HEADER STYLES START============*/
-.header{
-  padding: 30px 50px;
-  border-bottom: var(--border);
-}
-.header-wrap{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 300px;
-}
-.logo{
-  font-size: 28px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.btn-add{
-  transition: 0.3s;
-}
-
-.btn-add:hover{
- transform: scale(1.05);
- transition: 0.3s;
-}
 
 
-/*===========HEADER STYLES END============*/
 
 

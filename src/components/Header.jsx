@@ -1,4 +1,4 @@
-
+import './Header.css'
 
 
 export default function Header({}) {
@@ -9,7 +9,7 @@ export default function Header({}) {
        <a className="logo" href="index.html">
             Logo
         </a>
-        <button className="btn btn-add">➕ Add new snippet</button>
+        <button className="btn btn-style">➕ Add new snippet</button>
        </div>
         </div>
         </header>
