@@ -13,7 +13,9 @@ function App() {
   return (
     <>
       <Header></Header>
+     
       <div className="container">
+      <Categories></Categories>
       <SearchField></SearchField>
      
       <SnippetList></SnippetList>

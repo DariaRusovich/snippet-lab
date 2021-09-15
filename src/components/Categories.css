@@ -6,8 +6,6 @@
 }
 .categories {
   padding: 20px;
-  /* position: sticky;
-    top: 10px; */
   background-color: var(--bg-spippet);
 }
 .categories-title {
