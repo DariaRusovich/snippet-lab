@@ -8,9 +8,8 @@ export default function Snippet({}) {
         <h2 className="snippet-title">New Snippet Title</h2>
         <EditSnippet></EditSnippet>
       </div>
-      <div className="code">
-
-      </div>
+      <div className="code"></div>
+      <h2 className="notes"></h2>
     </div>
   );
 }
