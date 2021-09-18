@@ -15,10 +15,13 @@ function App() {
       <Header></Header>
      
       <div className="container">
+      <div className="content-wrapper">
       <Categories></Categories>
+      <div>
       <SearchField></SearchField>
-     
       <SnippetList></SnippetList>
+      </div>
+      </div>
       </div>
      
       {/* <Switch>

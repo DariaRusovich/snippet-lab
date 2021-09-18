@@ -196,7 +196,11 @@ button {
   padding: 10px 20px;
   border: var(--border);
 }
-
+.content-wrapper{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
 
 /*===========COMMON STYLES END============*/
 

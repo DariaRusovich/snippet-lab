@@ -12,7 +12,7 @@ export default function Categories({ data }) {
             ))}
           </ul>
         )}
-        <button className="btn btn-add">➕ Snippet</button>
+        <button className="btn btn-style">➕ Snippet</button>
       </div>
     </div>
   );
