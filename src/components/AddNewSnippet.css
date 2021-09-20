@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 50%;
+    width: 100%;
 }
 .add-form>h2{
     font-size: 22px;
@@ -12,9 +12,15 @@
 .add-form>h3{
     font-size: 18px;
 }
-.form-title, .form-folder, .form-lang, .form-code, .form-notes{
+.form-title, .form-category, .form-lang, .form-code, .form-notes{
     padding: 10px;
     border: var(--border);
+}
+/* .form-category{
+    color: #000;
+} */
+select>option{
+    color: #000;
 }
 .form-btn-group{
     display: flex;

@@ -193,7 +193,7 @@ button {
 }
 .app-container{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .page{
   flex: 1;

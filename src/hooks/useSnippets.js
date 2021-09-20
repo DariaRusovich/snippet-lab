@@ -2,7 +2,6 @@ import { useReducer, useEffect, useContext, createContext } from 'react'
 
 const initialState = []
 
-
 const SnippetsContext = createContext(initialState)
 
 export function useSnipets() {

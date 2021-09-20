@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 
@@ -9,7 +10,7 @@ export default function Header({}) {
        <a className="logo" href="index.html">
             Logo
         </a>
-        <button className="btn btn-style">➕ Add new snippet</button>
+        <Link className="btn btn-style" to="/add">➕ Add new snippet</Link>
        </div>
         </div>
         </header>
