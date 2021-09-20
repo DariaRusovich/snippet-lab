@@ -1,0 +1,32 @@
+.categories-pannel {
+  display: flex;
+  padding-top: 20px;
+  max-width: 250px;
+  /* height: 1000px;  */
+}
+.categories {
+  padding: 20px;
+  background-color: var(--bg-spippet);
+}
+.categories-title {
+  font-size: 20px;
+}
+.categories-list {
+  padding-top: 15px;
+  font-size: 18px;
+}
+.categories-list > li {
+  padding: 10px;
+  cursor: pointer;
+  word-break: break-word;
+  line-height: 1.2;
+}
+.categories-list > li:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+  
+}
+.categories .btn {
+  margin-top: 25px;
+  width: 100%;
+}

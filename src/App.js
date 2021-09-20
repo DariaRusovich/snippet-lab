@@ -7,27 +7,26 @@ import SearchField from "./components/SearchField";
 import NewSnippet from "./components/NewSnippet";
 import SnippetList from "./components/SnippetList";
 
-
 function App() {
-  
   return (
     <>
       <Header></Header>
-     
-      <div className="container">
-      <div className="content-wrapper">
-      <Categories></Categories>
-      <div>
-      <SearchField></SearchField>
-      <SnippetList></SnippetList>
+
+      <div className="container app-container">
+        <Categories></Categories>
+        <div>
+         <div className="page">
+         <Switch>
+            <Route path="/add">
+              <AddNewSnippet></AddNewSnippet>
+            </Route>
+            <Route path="/">
+              <SnippetList></SnippetList>
+            </Route>
+          </Switch>
+         </div>
+        </div>
       </div>
-      </div>
-      </div>
-     
-      {/* <Switch>
-        <Route path="/add">Add new Snippet</Route>
-        <Route path="/">Snippet list</Route>
-      </Switch> */}
     </>
   );
 }

@@ -1,0 +1,16 @@
+.new-snippet-item{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-spippet);
+    width: 50%;
+}
+.new-snippet-item-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new-snippet-title{
+    font-size: 18px;
+}
