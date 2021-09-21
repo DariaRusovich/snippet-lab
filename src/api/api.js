@@ -22,5 +22,7 @@ export function createSnippet(snippet) {
   return api.post(`/snippets`, snippet)
 }
 export function createCat(cat) {
+  console.log(cat);
   return api.post('/categories', cat)
+  
 }

@@ -1,7 +1,7 @@
 import "./AddNewSnippet.css";
 import Editor from "@monaco-editor/react";
 import { useState, useEffect } from "react";
-import { getCats, createSnippet } from "../api/api";
+import {  createSnippet } from "../api/api";
 import { useHistory, useParams } from "react-router";
 import { useCategories } from "../hooks/useCategories";
 
@@ -53,9 +53,9 @@ export default function AddNewSnippet() {
         <input className="form-title" type="text" name="title" id="form-title" required />
         <h3>Category</h3>
         <select className="form-category" name="category" required>
-          {cats.map((item) => (
-            <option value={item} key={item}>
-              {item}
+          {cats.map((cat) => (
+            <option value={cat.name} key={cat.id}>
+              {cat.name}
             </option>
           ))}
         </select>
