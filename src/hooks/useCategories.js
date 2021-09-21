@@ -35,16 +35,6 @@ function reducer(state, action) {
     }
     case "ADD": {
         return [...state, action.payload];
-    //   console.log(state);
-    //   console.log(action.payload.name);
-    //   const catUnique = state.find((cat) => cat.name === action.payload.name);
-    //   console.log(catUnique);
-
-    //   if (!catUnique) {
-       
-    //   } else {
-    //     return state;
-    //   }
     }
     default:
       throw new Error(`Wrong action type (${action.type})`);

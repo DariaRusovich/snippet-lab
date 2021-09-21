@@ -12,25 +12,20 @@ export default function Categories() {
     const newCat = {
       name: e.target.category.value,
     };
-    const uncommon = cats.find((cat) => cat.name === newCat.name);
-    console.log(uncommon);
-    if (uncommon) {
-      alert( `${uncommon.name} category already exist`);
+    const uncommonCat = cats.find((cat) => cat.name === newCat.name);
+    console.log(uncommonCat);
+    if (uncommonCat) {
+      alert(`${uncommonCat.name} category already exist`);
       dispatchCats({ type: "INIT", payload: cats });
       e.target.reset();
-    }
-    else {
+    } else {
       const [savedCat, savedCatError] = await createCat(newCat);
       if (savedCat) {
         dispatchCats({ type: "ADD", payload: savedCat });
         e.target.reset();
       }
     }
-    
     console.log(newCat);
-   
-    
-    
   }
 
   return (
