@@ -23,3 +23,7 @@
     margin-top: 15px;
     border: var(--border);
 }
+.code > pre{
+    white-space: break-spaces;
+    line-height: 1.5;
+}

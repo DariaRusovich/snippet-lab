@@ -194,6 +194,7 @@ button {
 .app-container{
   display: flex;
   justify-content: flex-start;
+  gap: 20px;
 }
 .page{
   flex: 1;

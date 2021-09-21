@@ -2,27 +2,26 @@ import "./AddNewSnippet.css";
 import Editor from "@monaco-editor/react";
 import { useState, useEffect } from "react";
 import { getCats, createSnippet } from "../api/api";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
+import { useCategories } from "../hooks/useCategories";
 
 export default function AddNewSnippet() {
+  const {id} = useParams()
   const history = useHistory();
+  const [editingSnippet, seteditingSnippet] = useState(null);
+  useEffect(() => {
+  console.log('edit mode');
+  }, [])
   const [snippetLang, setSnippetLang] = useState("javascript");
-  const [cats, setCats] = useState([]);
+  const [cats] = useCategories();
   const [snippetCode, setSnippetCode] = useState("");
 
-  useEffect(() => {
-    (async function () {
-      const [catsData, catsDataError] = await getCats();
-      if (!catsDataError) {
-        setCats(catsData);
-      }
-    })();
-  }, []);
+  
   async function createNewSnippet(e) {
     e.preventDefault();
     const newSnippet = {
       lang: e.target.lang.value,
-      title: e.target.lang.title,
+      title: e.target.title.value,
       category: e.target.category.value,
       createdAt: Date.now(),
       updatedAt: null,

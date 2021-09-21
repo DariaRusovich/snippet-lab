@@ -21,3 +21,6 @@ export function getSnippets() {
 export function createSnippet(snippet) {
   return api.post(`/snippets`, snippet)
 }
+export function createCat(cat) {
+  return api.post('/categories', cat)
+}
