@@ -1,7 +1,9 @@
-//import { useState, useEffect } from "react";
-import { createCat } from "../api/api";
 
+import { useState, useEffect } from "react";
+import { createCat, getSnippets } from "../api/api";
 import { useCategories } from "../hooks/useCategories";
+
+
 import "./Categories.css";
 
 export default function Categories() {
@@ -13,7 +15,6 @@ export default function Categories() {
       name: e.target.category.value,
     };
     const uncommonCat = cats.find((cat) => cat.name === newCat.name);
-    console.log(uncommonCat);
     if (uncommonCat) {
       alert(`${uncommonCat.name} category already exist`);
       dispatchCats({ type: "INIT", payload: cats });
@@ -25,9 +26,9 @@ export default function Categories() {
         e.target.reset();
       }
     }
-    console.log(newCat);
   }
-
+  
+  
   return (
     <div className="categories-pannel">
       <div className="categories">

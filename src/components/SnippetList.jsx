@@ -1,10 +1,12 @@
 import { getSnippets } from "../api/api";
 import { useState, useEffect } from "react";
 import Snippet from "./Snippet";
-import "./SnippetList.css";
-import SearchField from "./SearchField";
+import "./SnippetList.css"; 
+
+
 
 export default function SnippetList({}) {
+
   const [snippets, setSnippets] = useState([]);
   useEffect(() => {
     (async function () {
@@ -14,9 +16,38 @@ export default function SnippetList({}) {
       }
     })();
   }, []);
+
+  function filterSnippets(e) {
+    e.preventDefault();
+    const query = e.target.text.value
+    .trim()
+    .toLowerCase()
+    .split(" ")
+    .filter((word) => !!word);
+    console.log(query);
+    const searchFields = ['title', 'category']
+    const filteredMessage = searchSnippets(query, searchFields, snippets);
+    console.log(searchSnippets(query, searchFields, snippets));
+  }
+  
+  function searchSnippets(query, fields, snippets){
+    const filteredSnippets = snippets.filter((snippet) => {
+      return query.every((word) => {
+        return fields.some((field) => {
+          return snippet[field]?.trim()?.toLowerCase()?.includes(word);
+        })
+      })
+    })
+    return filteredSnippets
+  }
+
   return (
     <>
-      <SearchField></SearchField>
+     <form className="search-form" onSubmit={filterSnippets}>
+      <input type="text" name="text" required />
+      <button className="btn btn-style btn-search"> Search snippet</button>
+    </form>
+
       <div className="snippets">
         {snippets.length > 0 &&
           snippets.map((snippet) => (

@@ -2,7 +2,7 @@
 import "./Snippet.css";
 
 export default function Snippet({snippet}) {
-console.log(snippet.title);
+
   return (
     <div className="snippet-item">
       <div className="snippet-item-head">

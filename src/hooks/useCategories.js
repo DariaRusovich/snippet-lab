@@ -36,6 +36,7 @@ function reducer(state, action) {
     case "ADD": {
         return [...state, action.payload];
     }
+    
     default:
       throw new Error(`Wrong action type (${action.type})`);
   }
