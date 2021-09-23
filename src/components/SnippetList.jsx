@@ -8,6 +8,14 @@ import "./SnippetList.css";
 export default function SnippetList({}) {
 
   const [snippets, setSnippets] = useState([]);
+  
+  
+  useEffect(() => {
+    setSnippets(snippets);
+  }, [snippets]);
+  // useEffect(() => {
+  //   filterSnippets();
+  // }, [filter, snippets]);
   useEffect(() => {
     (async function () {
       const [snippetsData, snippetsDataError] = await getSnippets();
@@ -27,7 +35,7 @@ export default function SnippetList({}) {
     console.log(query);
     const searchFields = ['title', 'category']
     const filteredMessage = searchSnippets(query, searchFields, snippets);
-    console.log(searchSnippets(query, searchFields, snippets));
+    console.log(filteredMessage);
   }
   
   function searchSnippets(query, fields, snippets){

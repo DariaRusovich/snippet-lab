@@ -1,14 +1,39 @@
-
 import { useState, useEffect } from "react";
 import { createCat, getSnippets } from "../api/api";
 import { useCategories } from "../hooks/useCategories";
-
+import { useSnippets } from "../hooks/useSnippets";
 
 import "./Categories.css";
 
 export default function Categories() {
   const [cats, dispatchCats] = useCategories();
+  const [snippets, dispatchSnippets] = useSnippets();
+  const [snippetsCopy, setSnippetsCopy] = useState([]);
+  const [filterSnippets, setfilterSnippets] = useState([])
+  const catName = [...cats].map((cat) => cat.name)
+  console.log(catName);
   console.log(cats);
+  console.log(snippets);
+
+  useEffect(() => {
+    setSnippetsCopy(snippets)
+  }, [snippets]);
+
+  useEffect(() => {
+    filterSnippetsList()
+  }, [filterSnippets, snippets])
+
+
+function filterSnippetsList() {
+  if (filterSnippets) {
+    setSnippetsCopy([...snippets].filter(snippet => snippet.category === filterSnippets))
+    console.log(...snippets);
+  }
+  else {
+    setSnippetsCopy(snippets)
+  }
+}
+
   async function createNewCategory(e) {
     e.preventDefault();
     const newCat = {
@@ -27,8 +52,7 @@ export default function Categories() {
       }
     }
   }
-  
-  
+
   return (
     <div className="categories-pannel">
       <div className="categories">
@@ -36,10 +60,11 @@ export default function Categories() {
         {cats.length > 0 && (
           <ul className="categories-list">
             {cats.map((cat) => (
-              <li key={cat.id}>{cat.name}</li>
+              <li onClick={setfilterSnippets} key={cat.id}>{cat.name}</li>
             ))}
           </ul>
         )}
+  
         <form className="add-form" onSubmit={createNewCategory}>
           <input className="form-category" type="text" name="category" />
           <button className="btn btn-style">➕ Category</button>

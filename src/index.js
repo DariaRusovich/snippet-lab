@@ -4,14 +4,16 @@ import "./index.css";
 import App from "./App";
 import { CategoriesProvider } from "./hooks/useCategories";
 import { BrowserRouter } from "react-router-dom";
-
+import { SnippetsProvider } from "./hooks/useSnippets";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CategoriesProvider>
-        <App />
-      </CategoriesProvider>
+      <SnippetsProvider>
+        <CategoriesProvider>
+          <App />
+        </CategoriesProvider>
+      </SnippetsProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
