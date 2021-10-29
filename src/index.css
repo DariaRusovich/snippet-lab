@@ -151,7 +151,7 @@ body {
   background: hsl(260, 7%, 18%);
   color: #fff;
   font-style: normal;
-  font-size: 14px;
+  font-size: 18px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -161,9 +161,8 @@ body {
   height: 1500px; /*development*/
 }
 :root{
-  --color-btn: ;
-  --shadow-btn: ;
-  --border: 1px solid hsla(0, 0%, 100%, 0.5);
+ --secondary-bg-color: hsl(210, 11%, 15%);
+ --active-link-bg-color: hsl(210, 11%, 7%);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

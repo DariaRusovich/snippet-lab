@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { getSnippet, createSnippet, updateSnippet } from '../api/api';
 import PageHeader from '../components/PageHeader';
 import { useHistory } from 'react-router';
+import '../pages/Editor.css'
 export default function Editor() {
   const history = useHistory();
   const { id } = useParams();
@@ -91,7 +92,7 @@ export default function Editor() {
   }
   return (
     <>
-      <PageHeader />
+      <PageHeader/>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Snippet details</legend>
@@ -133,15 +134,15 @@ export default function Editor() {
 }
 
 // const snippet = {
-//   "id: 1,
-//   "code: '',
-//   "description: '',
-//   "lang: '',
-//   "tags: ['id', 'id', 'id'],
-//   "title: '',
-//   "documentation: '',
-//   "createdAt: 'time',
-//   "updatedAt: 'time',
-//   "copied: 0,
-//   "pinned: false,
+//   "id": 1,
+//   "code": "",
+//   "description": "",
+//   "lang": "",
+//   "tags": ["id", "id", "id"],
+//   "title": "",
+//   "documentation": "",
+//   "createdAt": "time",
+//   "updatedAt": "time",
+//   "copied": 0,
+//   "pinned": false,
 // };

@@ -1,0 +1,18 @@
+.header {
+  background-color: var(--secondary-bg-color);
+  padding: 10px 20px;
+}
+.navbar a:not(:first-child) {
+  margin-left: 20px;
+}
+.navbar a{
+    padding: 10px 10px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+.navbar a:hover{
+    background-color: var(--active-link-bg-color);
+}
+.navbar.active a{
+    background-color: var(--active-link-bg-color);
+}
