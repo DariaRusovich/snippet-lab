@@ -1,30 +1,33 @@
-import { Route, Switch } from "react-router";
-import Header from "./components/Header";
-import Categories from "./components/Categories";
-import AddNewSnippet from "./components/AddNewSnippet";
-import SnippetList from "./components/SnippetList";
+import { Route, Switch } from 'react-router';
+import Header from './components/Header';
+import Editor from './pages/Editor';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Snippet from './pages/Snippet';
+import Snippets from './pages/Snippets';
 
 function App() {
   return (
     <>
-      <Header></Header>
-
-      <div className="container app-container">
-        <Categories></Categories>
-
-        <div className="page">
-          <Switch>
-            <Route path="/add">
-              <AddNewSnippet></AddNewSnippet>
-            </Route>
-            <Route path="/edit/:id">
-              <AddNewSnippet></AddNewSnippet>
-            </Route>
-            <Route path="/">
-              <SnippetList></SnippetList>
-            </Route>
-          </Switch>
-        </div>
+      <Header />
+      <div className="container">
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path={['/editor', '/editor/:id']}>
+            <Editor />
+          </Route>
+          <Route exact path="/snippets">
+            <Snippets />
+          </Route>
+          <Route excat path="/snippet/:id">
+            <Snippet />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </>
   );

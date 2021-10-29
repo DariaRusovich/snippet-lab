@@ -11,9 +11,7 @@ export default function Categories() {
   const [snippetsCopy, setSnippetsCopy] = useState([]);
   const [filterSnippets, setfilterSnippets] = useState([])
   const catName = [...cats].map((cat) => cat.name)
-  console.log(catName);
-  console.log(cats);
-  console.log(snippets);
+
 
   useEffect(() => {
     setSnippetsCopy(snippets)
@@ -26,11 +24,13 @@ export default function Categories() {
 
 function filterSnippetsList() {
   if (filterSnippets) {
-    setSnippetsCopy([...snippets].filter(snippet => snippet.category === filterSnippets))
+    console.log(filterSnippets);
+    setSnippetsCopy([...snippets].filter(snippet => snippet.category === catName.name))
     console.log(...snippets);
   }
   else {
     setSnippetsCopy(snippets)
+    
   }
 }
 
@@ -46,7 +46,7 @@ function filterSnippetsList() {
       e.target.reset();
     } else {
       const [savedCat, savedCatError] = await createCat(newCat);
-      if (savedCat) {
+      if (!savedCatError) {
         dispatchCats({ type: "ADD", payload: savedCat });
         e.target.reset();
       }
