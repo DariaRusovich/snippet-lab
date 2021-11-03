@@ -205,8 +205,11 @@ button {
 .btn {
   padding: 10px 20px;
   border-radius: 3px;
+  transition: 0.3s;
 }
-
+.b-radius{
+  border-radius: 3px;
+}
 /*===========COMMON STYLES END============*/
 
 .page-header {

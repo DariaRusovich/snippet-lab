@@ -9,6 +9,7 @@ import serializeTags from '../utils/serializeTags';
 
 export default function Editor() {
   const [tagsData, dispatchTags] = useTags();
+  console.log(tagsData);
   const history = useHistory();
   const { id } = useParams();
   const [title, setTitle] = useState('');
@@ -177,13 +178,14 @@ export default function Editor() {
   }
   return (
     <>
-      <PageHeader title="Create snippet"/>
-      <form onSubmit={handleSubmit} className="form">
+      <PageHeader title="Create snippet" />
+      <form onSubmit={handleSubmit} className="form b-radius">
         <fieldset className="form-fieldset">
           <legend>Snippet details</legend>
           <label>
             <span>Title</span>
             <input
+              className="b-radius"
               type="text"
               required
               value={title}
@@ -193,6 +195,7 @@ export default function Editor() {
           <label>
             <span>Short description</span>
             <input
+            className="b-radius"
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -201,6 +204,7 @@ export default function Editor() {
           <label>
             <span>Language</span>
             <select
+            className="b-radius"
               required
               value={lang}
               onChange={(e) => setLang(e.target.value)}
@@ -221,17 +225,22 @@ export default function Editor() {
               )
             </span>
             <input
+            className="b-radius"
               type="text"
               required
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />
-            <small>Tag should be separated with a comma. Language tag will be added automatically</small>
+            <small>
+              Tag should be separated with a comma. Language tag will be added
+              automatically
+            </small>
           </label>
         </fieldset>
         <fieldset className="form-fieldset form-fieldset-text">
           <legend className="line">Snippet code</legend>
           <textarea
+          className="b-radius"
             required
             value={code}
             onChange={(e) => setCode(e.target.value)}
@@ -240,13 +249,18 @@ export default function Editor() {
         <fieldset className="form-fieldset form-fieldset-text">
           <legend className="line">Snippet documentation</legend>
           <textarea
+          className="b-radius"
             value={documentation}
             onChange={(e) => setDocumentation(e.target.value)}
           ></textarea>
         </fieldset>
         <div className="form-btn-group">
-          <button onClick={() => history.push('/')} className="btn btn-cancel">Cancel</button>
-          <button type="submit" className="btn btn-create">{id ? 'Edit' : 'Create'} </button>
+          <button onClick={() => history.push('/')} className="btn btn-cancel b-radius">
+            Cancel
+          </button>
+          <button type="submit" className="btn btn-create b-radius">
+            {id ? 'Edit' : 'Create'}{' '}
+          </button>
         </div>
       </form>
     </>
