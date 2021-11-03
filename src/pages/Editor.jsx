@@ -3,14 +3,19 @@ import { useParams } from 'react-router';
 import { getSnippet, createSnippet, updateSnippet } from '../api/api';
 import PageHeader from '../components/PageHeader';
 import { useHistory } from 'react-router';
-import '../pages/Editor.css'
+import '../pages/Editor.css';
+import { useTags } from '../hooks/useTags';
+import serializeTags from '../utils/serializeTags';
+
 export default function Editor() {
+  const [tagsData, dispatchTags] = useTags();
   const history = useHistory();
   const { id } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [lang, setLang] = useState('');
   const [tags, setTags] = useState('');
+  const [prevTags, setPrevTags] = useState('');
   const [code, setCode] = useState('');
   const [documentation, setDocumentation] = useState('');
 
@@ -24,12 +29,20 @@ export default function Editor() {
           setDescription(editingSnippet.description);
           setLang(editingSnippet.lang);
           setTags(editingSnippet.tags.join());
+          setPrevTags(editingSnippet.tags.join());
           setCode(editingSnippet.code);
           setDocumentation(editingSnippet.documentation);
         } else {
           alert('Error getting snippet by id');
           history.replace('/404');
         }
+      } else {
+        setTitle('');
+        setDescription('');
+        setLang('');
+        setTags('');
+        setCode('');
+        setDocumentation('');
       }
     })();
   }, [id]);
@@ -52,13 +65,55 @@ export default function Editor() {
         code,
         description,
         lang,
-        tags: tags.split(','),
+        tags: serializeTags(tags),
         title,
         documentation,
         updatedAt: Date.now(),
       };
       const [updatedSnippet, updatedSnippetError] = await updateSnippet(id, updatedSnippetData);
       if (!updatedSnippetError) {
+        if (prevTags !== updatedSnippet.tags) {
+          const prevTagsArray = serializeTags(prevTags);
+          const tagsArray = updatedSnippet.tags;
+          console.log(prevTagsArray,   tagsArray);
+          let overallTags = [
+            ...prevTagsArray
+              .map((prevTag) => {
+                if (!tagsArray.includes(prevTag)) {
+                  let count = -1;
+                  return { name: prevTag, count };
+                }
+                return false;
+              })
+              .filter(Boolean),
+            ...tagsArray
+              .map((tag) => {
+                if (!prevTagsArray.includes(tag)) {
+                  let count = 1;
+                  return { name: tag, count };
+                }
+                return false;
+              })
+              .filter(Boolean),
+          ];
+          console.log(overallTags);
+          overallTags.forEach((overallTag) => {
+            const existedTag = tagsData.tags.find((tag) => tag.name === overallTag.name);
+            if (overallTag.count === -1) {
+              if (existedTag) {
+                dispatchTags({ type: 'PRE_DECREMENT_UPDATE_TAG', payload: existedTag.id });
+              }
+            } else {
+              if (existedTag) {
+                dispatchTags({ type: 'PRE_INCREMENT_UPDATE_TAG', payload: existedTag.id });
+              } else {
+                dispatchTags({ type: 'PRE_CREATE_TAG', payload: overallTag.name });
+              }
+            }
+          });
+        } else {
+          console.log('tags equals');
+        }
         alert('Snippet updated!');
       } else {
         alert('Error updating snippet by server');
@@ -68,7 +123,7 @@ export default function Editor() {
         code,
         description,
         lang,
-        tags: tags.split(','),
+        tags: serializeTags(tags),
         title,
         documentation,
         createdAt: Date.now(),
@@ -78,6 +133,15 @@ export default function Editor() {
       };
       const [createdSnippet, createdSnippetError] = await createSnippet(newSnippet);
       if (!createdSnippetError) {
+        const snippetTags = createdSnippet.tags;
+        snippetTags.forEach((snippetTag) => {
+          const existedTag = tagsData.tags.find((tag) => tag.name === snippetTag);
+          if (existedTag) {
+            dispatchTags({ type: 'PRE_INCREMENT_UPDATE_TAG', payload: existedTag.id });
+          } else {
+            dispatchTags({ type: 'PRE_CREATE_TAG', payload: snippetTag });
+          }
+        });
         alert('Snippet created!');
       } else {
         alert('Error creating snippet by server');
@@ -92,9 +156,9 @@ export default function Editor() {
   }
   return (
     <>
-      <PageHeader/>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
+      <PageHeader />
+      <form onSubmit={handleSubmit} className="form">
+        <fieldset className="form-fieldset">
           <legend>Snippet details</legend>
           <label>
             <span>Title</span>
@@ -113,16 +177,24 @@ export default function Editor() {
             </select>
           </label>
           <label>
-            <span>Tags</span>
+            <span>
+              Tags (
+              {tagsData.tags.map((tag) => (
+                <span key={tag.id}>
+                  {tag.name}({tag.count})
+                </span>
+              ))}
+              )
+            </span>
             <input type="text" required value={tags} onChange={(e) => setTags(e.target.value)} />
             <small></small>
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset className="form-fieldset">
           <legend>Snippet code</legend>
           <textarea required value={code} onChange={(e) => setCode(e.target.value)}></textarea>
         </fieldset>
-        <fieldset>
+        <fieldset className="form-fieldset">
           <legend>Snippet documentation</legend>
           <textarea value={documentation} onChange={(e) => setDocumentation(e.target.value)}></textarea>
         </fieldset>

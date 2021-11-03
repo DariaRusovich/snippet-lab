@@ -1,3 +1,8 @@
+.header-container{
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
 .header {
   background-color: var(--secondary-bg-color);
   padding: 10px 20px;

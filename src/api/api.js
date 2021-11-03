@@ -26,3 +26,13 @@ export function createSnippet(snippet) {
 export function updateSnippet(id, snippet) {
   return api.patch(`/snippets/${id}`, snippet);
 }
+export function getTags() {
+  return api.get('/tags');
+}
+export function createTag(tag) {
+  return api.post(`/tags`, tag);
+}
+export function updateTag(id, updatedData) {
+  return api.patch(`/tags/${id}`, updatedData);
+}
+

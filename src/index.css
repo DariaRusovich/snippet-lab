@@ -148,7 +148,7 @@ html {
 }
 
 body {
-  background: hsl(260, 7%, 18%);
+  background: var(--primary-bg-color);
   color: #fff;
   font-style: normal;
   font-size: 18px;
@@ -161,8 +161,10 @@ body {
   height: 1500px; /*development*/
 }
 :root{
+  --primary-bg-color: hsl(210, 10%, 23%);
  --secondary-bg-color: hsl(210, 11%, 15%);
  --active-link-bg-color: hsl(210, 11%, 7%);
+ --input-border-bg: hsl(210, 9%, 31%);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -186,7 +188,7 @@ button {
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
 }
@@ -206,6 +208,10 @@ button {
 
 /*===========COMMON STYLES END============*/
 
+
+.page-header{
+  margin: 40px 0;
+}
 
 
 

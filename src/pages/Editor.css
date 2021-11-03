@@ -1,0 +1,19 @@
+.form {
+  padding: 20px 30px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: var(--secondary-bg-color);
+  border-radius: 3px;
+}
+.form-fieldset label {
+  display: flex;
+  flex-direction: column;
+}
+.form input,
+.form textarea {
+  border: 1px solid var(--input-border-bg);
+  border-radius: 3px;
+}
+.form textarea{
+    width: 100%;
+}
