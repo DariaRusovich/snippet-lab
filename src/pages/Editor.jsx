@@ -70,12 +70,15 @@ export default function Editor() {
         documentation,
         updatedAt: Date.now(),
       };
-      const [updatedSnippet, updatedSnippetError] = await updateSnippet(id, updatedSnippetData);
+      const [updatedSnippet, updatedSnippetError] = await updateSnippet(
+        id,
+        updatedSnippetData
+      );
       if (!updatedSnippetError) {
         if (prevTags !== updatedSnippet.tags) {
           const prevTagsArray = serializeTags(prevTags);
           const tagsArray = updatedSnippet.tags;
-          console.log(prevTagsArray,   tagsArray);
+          console.log(prevTagsArray, tagsArray);
           let overallTags = [
             ...prevTagsArray
               .map((prevTag) => {
@@ -98,16 +101,27 @@ export default function Editor() {
           ];
           console.log(overallTags);
           overallTags.forEach((overallTag) => {
-            const existedTag = tagsData.tags.find((tag) => tag.name === overallTag.name);
+            const existedTag = tagsData.tags.find(
+              (tag) => tag.name === overallTag.name
+            );
             if (overallTag.count === -1) {
               if (existedTag) {
-                dispatchTags({ type: 'PRE_DECREMENT_UPDATE_TAG', payload: existedTag.id });
+                dispatchTags({
+                  type: 'PRE_DECREMENT_UPDATE_TAG',
+                  payload: existedTag.id,
+                });
               }
             } else {
               if (existedTag) {
-                dispatchTags({ type: 'PRE_INCREMENT_UPDATE_TAG', payload: existedTag.id });
+                dispatchTags({
+                  type: 'PRE_INCREMENT_UPDATE_TAG',
+                  payload: existedTag.id,
+                });
               } else {
-                dispatchTags({ type: 'PRE_CREATE_TAG', payload: overallTag.name });
+                dispatchTags({
+                  type: 'PRE_CREATE_TAG',
+                  payload: overallTag.name,
+                });
               }
             }
           });
@@ -131,13 +145,20 @@ export default function Editor() {
         copied: 0,
         pinned: false,
       };
-      const [createdSnippet, createdSnippetError] = await createSnippet(newSnippet);
+      const [createdSnippet, createdSnippetError] = await createSnippet(
+        newSnippet
+      );
       if (!createdSnippetError) {
         const snippetTags = createdSnippet.tags;
         snippetTags.forEach((snippetTag) => {
-          const existedTag = tagsData.tags.find((tag) => tag.name === snippetTag);
+          const existedTag = tagsData.tags.find(
+            (tag) => tag.name === snippetTag
+          );
           if (existedTag) {
-            dispatchTags({ type: 'PRE_INCREMENT_UPDATE_TAG', payload: existedTag.id });
+            dispatchTags({
+              type: 'PRE_INCREMENT_UPDATE_TAG',
+              payload: existedTag.id,
+            });
           } else {
             dispatchTags({ type: 'PRE_CREATE_TAG', payload: snippetTag });
           }
@@ -156,21 +177,34 @@ export default function Editor() {
   }
   return (
     <>
-      <PageHeader />
+      <PageHeader title="Create snippet"/>
       <form onSubmit={handleSubmit} className="form">
         <fieldset className="form-fieldset">
           <legend>Snippet details</legend>
           <label>
             <span>Title</span>
-            <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input
+              type="text"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
           </label>
           <label>
             <span>Short description</span>
-            <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
           </label>
           <label>
             <span>Language</span>
-            <select required value={lang} onChange={(e) => setLang(e.target.value)}>
+            <select
+              required
+              value={lang}
+              onChange={(e) => setLang(e.target.value)}
+            >
               <option>HTML</option>
               <option>JS</option>
               <option>CSS</option>
@@ -186,20 +220,34 @@ export default function Editor() {
               ))}
               )
             </span>
-            <input type="text" required value={tags} onChange={(e) => setTags(e.target.value)} />
-            <small></small>
+            <input
+              type="text"
+              required
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+            />
+            <small>Tag should be separated with a comma. Language tag will be added automatically</small>
           </label>
         </fieldset>
-        <fieldset className="form-fieldset">
+        <fieldset className="form-fieldset form-fieldset-text line">
           <legend>Snippet code</legend>
-          <textarea required value={code} onChange={(e) => setCode(e.target.value)}></textarea>
+          <textarea
+            required
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          ></textarea>
         </fieldset>
-        <fieldset className="form-fieldset">
+        <fieldset className="form-fieldset form-fieldset-text line">
           <legend>Snippet documentation</legend>
-          <textarea value={documentation} onChange={(e) => setDocumentation(e.target.value)}></textarea>
+          <textarea
+            value={documentation}
+            onChange={(e) => setDocumentation(e.target.value)}
+          ></textarea>
         </fieldset>
-        <button onClick={() => history.push('/')}>Cancel</button>
-        <button type="submit">{id ? 'Edit' : 'Create'}</button>
+        <div className="form-btn-group">
+          <button onClick={() => history.push('/')} className="btn btn-cancel">Cancel</button>
+          <button type="submit" className="btn btn-create">{id ? 'Edit' : 'Create'} </button>
+        </div>
       </form>
     </>
   );
