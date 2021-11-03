@@ -229,16 +229,16 @@ export default function Editor() {
             <small>Tag should be separated with a comma. Language tag will be added automatically</small>
           </label>
         </fieldset>
-        <fieldset className="form-fieldset form-fieldset-text line">
-          <legend>Snippet code</legend>
+        <fieldset className="form-fieldset form-fieldset-text">
+          <legend className="line">Snippet code</legend>
           <textarea
             required
             value={code}
             onChange={(e) => setCode(e.target.value)}
           ></textarea>
         </fieldset>
-        <fieldset className="form-fieldset form-fieldset-text line">
-          <legend>Snippet documentation</legend>
+        <fieldset className="form-fieldset form-fieldset-text">
+          <legend className="line">Snippet documentation</legend>
           <textarea
             value={documentation}
             onChange={(e) => setDocumentation(e.target.value)}
