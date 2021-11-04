@@ -1,36 +1,40 @@
-.snippet-filter-card{
-    padding: 25px 20px 15px 20px;
-    margin-top: 50px;
-    background-color: var(--secondary-bg-color);
-    width: 300px;
+.snippet-filter-card {
+  padding: 25px 20px 15px 20px;
+  margin-top: 50px;
+  background-color: var(--secondary-bg-color);
+  width: 300px;
 }
-.snippet-filter-btn{
-    margin-top: 30px;
-    border: 1px solid var(--basic-color);
-    width: 100%;
+.snippet-filter-btn {
+  margin-top: 30px;
+  border: 1px solid var(--basic-color);
+  width: 100%;
 }
-.snippet-filter-btn:hover{
-    background-color: var(--primary-bg-color);
+.snippet-filter-btn:hover {
+  background-color: var(--primary-bg-color);
 }
-.tags-list{
-    margin-top: 30px;
+.tags-list {
+  margin-top: 30px;
 }
-.tags-list li{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.tags-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
-.tags-list li:not(:first-child){
-    margin-top: 15px;
+.tags-list li:not(:first-child) {
+  margin-top: 15px;
 }
-.snippet-filter-card-title{
-    font-size: 20px;
+.snippet-filter-card-title {
+  font-size: 20px;
 }
-.snippet-header-wrap span{
-    margin-top: 15px;
+.snippet-filter-card-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
 }
-.tags-list-title{
-    font-size: 22px;
-    margin-top: 50px;
+
+.tags-list-title {
+  font-size: 22px;
+  margin-top: 50px;
 }
